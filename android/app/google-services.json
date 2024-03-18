@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "378522202324",
+    "project_id": "med-tracker-748ec",
+    "storage_bucket": "med-tracker-748ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378522202324:android:50b3113bdfec3826538b41",
+        "android_client_info": {
+          "package_name": "com.example.med_track_01"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVZ_wb9D_J3eb6-0ljhlobcVDmZiJfjIE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
