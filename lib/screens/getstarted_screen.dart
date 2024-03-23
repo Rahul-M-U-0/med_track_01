@@ -125,39 +125,6 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   const SizedBox(
                     height: 50,
                   ),
-                  // SizedBox(
-                  //   height: 45,
-                  //   width: 200,
-                  //   child: ElevatedButton(
-                  //     onPressed: () {
-                  //       if (_activePage == pages.length - 1) {
-                  //         _pageController.animateToPage(
-                  //           0,
-                  //           duration: const Duration(milliseconds: 800),
-                  //           curve: Curves.easeInOutQuart,
-                  //         );
-                  //       } else {
-                  //         _pageController.nextPage(
-                  //           duration: const Duration(milliseconds: 800),
-                  //           curve: Curves.easeInOutQuart,
-                  //         );
-                  //       }
-                  //     },
-                  //     style: ElevatedButton.styleFrom(
-                  //       backgroundColor: const Color(0xff15c79a),
-                  //     ),
-                  //     child: Text(
-                  //       _activePage == pages.length - 1 ? 'Back' : 'Next',
-                  //       style: const TextStyle(
-                  //         color: Colors.white,
-                  //         fontWeight: FontWeight.bold,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // const SizedBox(
-                  //   height: 20,
-                  // ),
                   SizedBox(
                     height: 45,
                     width: 200,

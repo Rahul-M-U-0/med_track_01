@@ -8,6 +8,7 @@ import 'package:med_track_01/screens/user/home/home_screen.dart';
 import 'package:med_track_01/screens/user/medicnies/user_medications.dart';
 import 'package:med_track_01/screens/user/profile/user_profile_screen.dart';
 import 'package:med_track_01/screens/user/store/user_store_screen.dart';
+import 'package:med_track_01/screens/user/widgets/get_profile.dart';
 import 'package:provider/provider.dart';
 
 class UserBottomNavi extends StatefulWidget {
@@ -73,16 +74,16 @@ class _UserBottomNaviState extends State<UserBottomNavi> {
     const UserMedicationScreen(),
     const UserStoreScreen(),
     const UserChatScreen(),
-    Consumer<UserProfileProvider>(
-      builder: (context, profileProvider, child) =>
-          UserProfileScreen(profileProvider: profileProvider),
-    ),
+    const UserProfileScreen(),
   ];
 
   @override
   void initState() {
-    super.initState();
+    final profileProvider =
+        Provider.of<UserProfileProvider>(context, listen: false);
+    getUserProfileInfo(profileProvider);
     _navigationController = CircularBottomNavigationController(selectedPos);
+    super.initState();
   }
 
   @override

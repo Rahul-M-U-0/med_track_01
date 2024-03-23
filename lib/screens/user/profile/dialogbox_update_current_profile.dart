@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_track_01/providers/userProviders/user_profile_provider.dart';
-import 'package:med_track_01/screens/user/widgets/get_user_profile.dart';
+import 'package:med_track_01/screens/user/widgets/get_profile.dart';
 import 'package:provider/provider.dart';
 
 dialogBoxUpdateCurrentUserName(context, userId, infoType) {
@@ -39,7 +39,7 @@ dialogBoxUpdateCurrentUserName(context, userId, infoType) {
             builder: (context, profileProvider, child) {
               return ElevatedButton(
                 onPressed: () {
-                  getProfileInfo(profileProvider);
+                  getUserProfileInfo(profileProvider);
                   Navigator.pop(context);
                 },
                 child: const Text("Cancel"),
@@ -112,7 +112,7 @@ dialogBoxUpdateCurrentPhone(context, userId, infoType) {
             builder: (context, profileProvider, child) {
               return ElevatedButton(
                 onPressed: () {
-                  getProfileInfo(profileProvider);
+                  getUserProfileInfo(profileProvider);
                   Navigator.pop(context);
                 },
                 child: const Text("Cancel"),
@@ -183,7 +183,7 @@ dialogBoxUpdateCurrentAddress(context, userId, infoType) {
             builder: (context, profileProvider, child) {
               return ElevatedButton(
                 onPressed: () {
-                  getProfileInfo(profileProvider);
+                  getUserProfileInfo(profileProvider);
                   Navigator.pop(context);
                 },
                 child: const Text("Cancel"),

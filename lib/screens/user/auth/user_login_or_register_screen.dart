@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_track_01/screens/user/auth/user_login_screen.dart';
+import 'package:med_track_01/screens/login_screen.dart';
 import 'package:med_track_01/screens/user/auth/user_register_screen.dart';
 
 class UserLoginOrRegisterScreen extends StatefulWidget {
@@ -22,8 +22,9 @@ class _UserLoginOrRegisterScreenState extends State<UserLoginOrRegisterScreen> {
   @override
   Widget build(BuildContext context) {
     if (showLoginScreen) {
-      return UserLoginScreen(
+      return LoginScreen(
         registerTap: toggleScreens,
+        role: "User",
       );
     } else {
       return UserRegistrationScreen(

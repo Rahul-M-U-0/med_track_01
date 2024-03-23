@@ -3,23 +3,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:med_track_01/providers/userProviders/user_login_provider.dart';
+import 'package:med_track_01/providers/login_provider.dart';
 import 'package:med_track_01/providers/userProviders/user_profile_provider.dart';
+import 'package:med_track_01/screens/doctor/doctor_bnb.dart';
 import 'package:med_track_01/screens/getstarted_screen.dart';
-import 'package:med_track_01/screens/user/user_bnb.dart';
-import 'package:med_track_01/screens/user/widgets/get_user_profile.dart';
+import 'package:med_track_01/screens/shop/shop_bnb.dart';
+import 'package:med_track_01/screens/user_bnb.dart';
+import 'package:med_track_01/screens/user/widgets/get_profile.dart';
 
 import 'package:provider/provider.dart';
 
-class UserLoginScreen extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   final Function()? registerTap;
-  const UserLoginScreen({super.key, required this.registerTap});
+  String role;
+  LoginScreen({
+    super.key,
+    required this.registerTap,
+    required this.role,
+  });
 
   @override
-  State<UserLoginScreen> createState() => _UserLoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _UserLoginScreenState extends State<UserLoginScreen> {
+class _LoginScreenState extends State<LoginScreen> {
+  //user sign in
   Future signUserIn(UserLoginProvider providerValue,
       UserProfileProvider profileProvider, BuildContext context) async {
     FocusManager.instance.primaryFocus?.unfocus();
@@ -56,7 +64,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
         providerValue.deleteEmail();
         providerValue.deletePassword();
       });
-      await getProfileInfo(profileProvider);
+      await getUserProfileInfo(profileProvider);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'channel-error') {
@@ -69,6 +77,25 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
     }
   }
 
+  // store sign in
+  void signStoreIn() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ShopBottomNavi(),
+      ),
+    );
+  }
+
+  //doctor sign in
+  void signDoctorIn() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const DoctorBottomNavi(),
+      ),
+    );
+  }
+
+  //show error message
   void showErrorMessage(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -98,9 +125,9 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
             icon: const Icon(Icons.arrow_back_ios),
             color: Colors.white,
           ),
-          title: const Text(
-            'LogIn As user',
-            style: TextStyle(color: Colors.white),
+          title: Text(
+            'LogIn As ${widget.role}',
+            style: const TextStyle(color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: const Color(0xff04516f),
@@ -115,9 +142,9 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircleAvatar(
-                        radius: screenSize.width * 0.25,
-                        backgroundImage:
-                            const AssetImage('assets/images/user.webp'),
+                        radius: screenSize.width * 0.2,
+                        backgroundImage: const NetworkImage(
+                            'https://firebasestorage.googleapis.com/v0/b/med-tracker-748ec.appspot.com/o/avatar.png?alt=media&token=0d660f92-82af-45fa-af65-c0db46bc046d'),
                         backgroundColor: const Color(0xff04516f),
                       ),
                       SizedBox(
@@ -211,8 +238,14 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                                 backgroundColor: const Color(0xff15c79a),
                               ),
                               onPressed: () {
-                                signUserIn(
-                                    providerValue, profileProvider, context);
+                                if (widget.role == "User") {
+                                  signUserIn(
+                                      providerValue, profileProvider, context);
+                                } else if (widget.role == "Store") {
+                                  signStoreIn();
+                                } else if (widget.role == "Doctor") {
+                                  signDoctorIn();
+                                }
                               },
                               child: const Text(
                                 'LogIn',

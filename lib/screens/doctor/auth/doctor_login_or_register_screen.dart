@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:med_track_01/screens/doctor/auth/doctor_login_screen.dart';
 import 'package:med_track_01/screens/doctor/auth/doctor_register_screen.dart';
+import 'package:med_track_01/screens/login_screen.dart';
 
 class DoctorLoginOrRegisterScreen extends StatefulWidget {
   const DoctorLoginOrRegisterScreen({super.key});
@@ -23,8 +23,9 @@ class _DoctorLoginOrRegisterScreenState
   @override
   Widget build(BuildContext context) {
     if (showLoginScreen) {
-      return DoctorLoginScreen(
+      return LoginScreen(
         registerTap: toggleScreens,
+        role: "Doctor",
       );
     } else {
       return DoctorRegistrationScreen(

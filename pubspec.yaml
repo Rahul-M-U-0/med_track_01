@@ -50,6 +50,9 @@ dependencies:
   date_picker_timeline: ^1.2.5
   flutter_toast_message_bar: ^0.0.8
   auto_size_text: ^3.0.0
+  image_picker: ^1.0.7
+  firebase_storage: ^11.6.9
+  image_cropper: ^5.0.1
 
 dev_dependencies:
   flutter_test:

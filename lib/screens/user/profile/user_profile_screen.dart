@@ -6,14 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:med_track_01/providers/userProviders/user_profile_provider.dart';
 import 'package:med_track_01/screens/getstarted_screen.dart';
 import 'package:med_track_01/screens/user/profile/user_editprofile_screen.dart';
-import 'package:med_track_01/screens/user/widgets/get_user_profile.dart';
 
 import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  UserProfileScreen({super.key, required this.profileProvider});
-
-  UserProfileProvider profileProvider;
+  const UserProfileScreen({super.key});
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -31,12 +28,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         (route) => false);
   }
 
-  @override
-  void initState() {
-    getProfileInfo(widget.profileProvider);
-    super.initState();
-  }
-
   void editProfile(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -46,8 +37,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   }
 
   void changePassword(BuildContext context) {}
-
-  void submitProfile(BuildContext context) {}
 
   Future<void> deleteAccount(BuildContext context) async {
     showDialog(
@@ -125,7 +114,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                         backgroundColor: const Color(0xff15c79a),
                         child: CircleAvatar(
                           radius: screenSize.width * 0.20 - 2,
-                          backgroundImage: AssetImage(providerValue.pic),
+                          backgroundImage: NetworkImage(providerValue.pic),
                         ),
                       ),
                       const SizedBox(

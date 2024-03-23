@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_track_01/screens/shop/auth/shop_login_screen.dart';
+import 'package:med_track_01/screens/login_screen.dart';
 import 'package:med_track_01/screens/shop/auth/shop_register_screen.dart';
 
 class ShopLoginOrRegistrationScreen extends StatefulWidget {
@@ -23,8 +23,9 @@ class _ShopLoginOrRegistrationScreenState
   @override
   Widget build(BuildContext context) {
     if (showLoginScreen) {
-      return ShopLoginScreen(
+      return LoginScreen(
         registerTap: toggleScreens,
+        role: "Store",
       );
     } else {
       return ShopRegistrationScreen(

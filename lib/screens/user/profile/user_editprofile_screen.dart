@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_track_01/providers/userProviders/user_profile_provider.dart';
 import 'package:med_track_01/screens/user/profile/dialogbox_update_current_profile.dart';
-import 'package:med_track_01/screens/user/widgets/get_user_profile.dart';
+import 'package:med_track_01/screens/user/widgets/get_profile.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -19,13 +19,13 @@ class _UserEditProfileScreenState extends State<UserEditProfileScreen> {
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
   void cancel(UserProfileProvider profileProvider, BuildContext context) {
-    getProfileInfo(profileProvider);
+    getUserProfileInfo(profileProvider);
     Navigator.pop(context);
   }
 
   void submitProfile(
       UserProfileProvider profileProvider, BuildContext context) async {
-    getProfileInfo(profileProvider);
+    getUserProfileInfo(profileProvider);
     Navigator.pop(context);
   }
 
@@ -60,7 +60,6 @@ class _UserEditProfileScreenState extends State<UserEditProfileScreen> {
             ),
           ),
           centerTitle: true,
-
         ),
         body: SizedBox(
           width: double.infinity,
@@ -77,11 +76,7 @@ class _UserEditProfileScreenState extends State<UserEditProfileScreen> {
                       ),
                       CircleAvatar(
                         radius: screenSize.width * 0.2,
-                        backgroundColor: const Color(0xff15c79a),
-                        child: CircleAvatar(
-                          radius: screenSize.width * 0.2 - 2,
-                          backgroundImage: AssetImage(profileProvider.pic),
-                        ),
+                        backgroundImage: NetworkImage(profileProvider.pic),
                       ),
                       SizedBox(
                         height: screenSize.height * 0.08,

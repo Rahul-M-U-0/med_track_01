@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unused_element
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:med_track_01/providers/userProviders/user_profile_provider.dart';
 import 'package:med_track_01/providers/userProviders/user_register_provider.dart';
 import 'package:med_track_01/screens/getstarted_screen.dart';
-import 'package:med_track_01/screens/user/user_bnb.dart';
-import 'package:med_track_01/screens/user/widgets/get_user_profile.dart';
+import 'package:med_track_01/screens/user_bnb.dart';
+import 'package:med_track_01/screens/user/widgets/get_profile.dart';
 
 import 'package:provider/provider.dart';
 
@@ -51,7 +51,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
           "email": providerValue.email.trim(),
           "phone": providerValue.phone.trim(),
           "address": "",
-          "pic": "assets/images/user.webp"
+          "pic": profileProvider.pic
         };
         FirebaseFirestore.instance
             .collection("users")
@@ -73,7 +73,7 @@ class _UserRegistrationScreenState extends State<UserRegistrationScreen> {
           providerValue.deleteEmail();
           providerValue.deletePassword();
         });
-        await getProfileInfo(profileProvider);
+        await getUserProfileInfo(profileProvider);
       } else {
         Navigator.pop(context);
         showErrorMessage('Please fill out all fields to Continue');

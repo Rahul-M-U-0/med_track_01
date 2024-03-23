@@ -1,9 +1,12 @@
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
+import 'package:med_track_01/providers/storeProvider/store_profile_provider.dart';
 import 'package:med_track_01/screens/shop/medicines/medicines_screen.dart';
 import 'package:med_track_01/screens/shop/order/order_screen.dart';
 import 'package:med_track_01/screens/shop/profile/shop_profile_screen.dart';
+import 'package:med_track_01/screens/user/widgets/get_profile.dart';
+import 'package:provider/provider.dart';
 
 class ShopBottomNavi extends StatefulWidget {
   const ShopBottomNavi({super.key});
@@ -54,8 +57,11 @@ class _ShopBottomNaviState extends State<ShopBottomNavi> {
 
   @override
   void initState() {
-    super.initState();
+    final profileProvider =
+        Provider.of<StoreProfileProvider>(context, listen: false);
+    getStoreProfileInfo(profileProvider);
     _navigationController = CircularBottomNavigationController(selectedPos);
+    super.initState();
   }
 
   @override
